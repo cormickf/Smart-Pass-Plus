@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.SQLOutput;
 
 
 public class Main {
@@ -23,6 +24,10 @@ public class Main {
         secondFrame.setLayout(null);
 
 
+        JFrame logIn = new JFrame("Log in");
+        logIn.setSize(200,200);
+        logIn.setLayout(null);
+        logIn.setVisible(false);
 
 
         // setting the buttons
@@ -33,6 +38,8 @@ public class Main {
         JButton away2 = new JButton("Away");
         JButton inClass2 = new JButton("Present");
         JButton setLocation2 = new JButton("Set");
+        JButton checkLog = new JButton("Log in");
+        JButton setAnounce = new JButton("Send");
 
         // setting labels and text fields.
         JLabel name = new JLabel("Cormick");
@@ -48,6 +55,11 @@ public class Main {
         JLabel controlName = new JLabel("Cormick");
         JLabel controlName2 = new JLabel("Patrick");
         JTextField destination2 = new JTextField();
+        JLabel logInInfo = new JLabel("Enter password");
+        JTextField logging = new JTextField();
+        JLabel announce = new JLabel("Waiting for Announcements");
+        JTextField anouncements = new JTextField("Set Announcement");
+
 
 
 
@@ -75,6 +87,12 @@ public class Main {
         inClass2.setBounds(150,50,90,30);
         destination2.setBounds(240,50,75,30);
         setLocation2.setBounds(300,50,60,30);
+        logInInfo.setBounds(20,20,110,30);
+        logging.setBounds(20,45,110,30);
+        checkLog.setBounds(20, 75, 110,30);
+        announce.setBounds(0,90,250,30);
+        anouncements.setBounds(50,250,150,30);
+        setAnounce.setBounds(50,220,70,30);
 
 
         // setting borders for the text fields and labels
@@ -94,15 +112,23 @@ public class Main {
         controlName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         controlName2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         destination2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        logging.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+        announce.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        anouncements.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 
 
 
         // all the button control for when pressed events
+
+
+
+
+
         control.addActionListener(new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
 
-                secondFrame.setVisible(true);
+                logIn.setVisible(true);
 
 
 
@@ -110,6 +136,27 @@ public class Main {
 
             }
         });
+
+                // the log in system for the control area.
+        checkLog.addActionListener(new AbstractAction() {
+
+            public void actionPerformed(ActionEvent e) {
+                String check = logging.getText();
+
+                if (check.equals("teacher")) {
+
+                    secondFrame.setVisible(true);
+                    logIn.setVisible(false);
+                    System.out.println("Working");
+                } else {
+                    System.out.println("Not working");
+
+                }
+
+            }
+        });
+
+
 
         away.addActionListener(new AbstractAction() {
 
@@ -188,6 +235,18 @@ public class Main {
             }
         });
 
+        setAnounce.addActionListener(new AbstractAction() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                announce.setText(anouncements.getText());
+
+
+            }
+        });
+
+
+
 
 
         // adding all the extras like buttons,text feilds, and labels to the frame to be visable
@@ -211,6 +270,12 @@ public class Main {
         secondFrame.add(destination2);
         secondFrame.add(inClass2);
         secondFrame.add(setLocation2);
+        logIn.add(logInInfo);
+        logIn.add(logging);
+        logIn.add(checkLog);
+        mainFrame.add(announce);
+        secondFrame.add(anouncements);
+        secondFrame.add(setAnounce);
 
     }
 
